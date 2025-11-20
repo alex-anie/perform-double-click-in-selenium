@@ -1,164 +1,217 @@
-# Double Click in Selenium
+# **Double Click in Selenium (Python Project)**
 
-This project demonstrates how to perform a **double-click action in Selenium** using three different languages:
+This project demonstrates how to perform a **realistic double-click action using Selenium in Python** on a LambdaTest demo blog page.
 
-- 🐍 **Python**
-- ☕ **Java**
-- 🟨 **JavaScript (Node.js)**
+You will run the test using:
 
-Each implementation interacts with the same test page hosted on **LambdaTest** and simulates a real-world double-click on a blog title.
+✔ **Local ChromeDriver**
 
-## 📁 Folder Structure
+✔ **LambdaTest Cloud Grid (Remote WebDriver)**
+
+The entry script for this project is:
+
+```
+main.py
+```
 
 ---
 
+# 📁 **Folder Structure**
+
+```
 double-click-in-selenium/
-
 │
-
 ├── Python/
-
 │   ├── main.py
-
-│   └── venv/                  # Python virtual environment
-
+│   ├── requirements.txt
+│   └── venv/                 # Python virtual environment (created after setup)
 │
-
-├── Java/
-
-│   ├── main.java
-
-│   └── models/                # (Optional) supporting classes or utilities
-
-│
-
-├── JavaScript/
-
-│   ├── index.js
-
-│   └── node_modules/          # Installed NPM dependencies
-
-│
-
 └── README.md
+```
 
-## 🧩 1. Setup & Run — Python Version
+---
+
+# 🧩 **1. Setup & Run — Python Version**
+
+Follow these steps to set up the project locally:
+
+### **Step 1 — Navigate to the Python folder**
 
 ```bash
 cd Python
-python -m venv venv
-venv\Scripts\activate   # (Windows)
-# or source venv/bin/activate (macOS/Linux)
-
-pip install selenium
-python main.py
-
-```
-
-### ✅ Expected Output
-
-```
-Double-click action performed successfully on the blog title!
-
 ```
 
 ---
 
-## 🟨 2. Setup & Run — JavaScript (Node.js) Version
+### **Step 2 — Create & Activate Virtual Environment**
 
-### 📦 Requirements
-
-- Node.js 18+
-- Google Chrome
-- Matching ChromeDriver
-
-### ▶️ Steps
+### **Windows**
 
 ```bash
-cd JavaScript
-npm init -y
-npm install selenium-webdriver chromedriver
-node index.js
-
+python -m venv venv
+venv\Scripts\activate
 ```
 
-### ✅ Expected Output
+### **macOS/Linux**
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+---
+
+### **Step 3 — Install Required Dependencies**
+
+Your `requirements.txt` includes all necessary packages:
+
+```
+attrs==25.4.0
+certifi==2025.11.12
+cffi==2.0.0
+h11==0.16.0
+idna==3.11
+outcome==1.3.0.post0
+pycparser==2.23
+PySocks==1.7.1
+python-dotenv==1.2.1
+selenium==4.38.0
+sniffio==1.3.1
+sortedcontainers==2.4.0
+trio==0.32.0
+trio-websocket==0.12.2
+typing_extensions==4.15.0
+urllib3==2.5.0
+websocket-client==1.9.0
+wsproto==1.3.1
+```
+
+Install them:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# 🚀 **2. Run Test Locally (ChromeDriver)**
+
+Simply run:
+
+```bash
+python main.py
+```
+
+You should see:
 
 ```
 Double-click action performed successfully on the blog title!
-
 ```
 
 ---
 
-## ☕ 3. Setup & Run — Java Version
+# ☁️ **3. Run the Test on LambdaTest (Remote WebDriver)**
 
-### 📦 Requirements
+To run your Selenium script on the LambdaTest cloud grid, follow the steps below.
 
-- Java JDK 17 or higher
-- [Selenium Java Client](https://www.selenium.dev/downloads/)
-- ChromeDriver
+---
 
-### ▶️ Steps
+## **Step 1 — Get Your Credentials**
 
-1. Open a terminal in the `Java` folder
-2. Compile the Java file:
-    
-    ```bash
-    javac -cp "selenium-server-4.x.x.jar;." main.java
-    
-    ```
-    
-3. Run the program:
-    
-    ```bash
-    java -cp "selenium-server-4.x.x.jar;." main
-    
-    ```
-    
+Log in to your LambdaTest account and fetch:
 
-### ✅ Expected Output
+- **Username**
+- **Access Key**
+
+---
+
+## **Step 2 — Set Environment Variables**
+
+Your script uses:
 
 ```
-Double-click action performed successfully on the blog title!
+LT_USERNAME
+LT_ACCESS_KEY
+```
 
+### **Linux/macOS**
+
+```bash
+export LT_USERNAME="YOUR_USERNAME"
+export LT_ACCESS_KEY="YOUR_ACCESS_KEY"
+```
+
+### **Windows (CMD)**
+
+```bash
+set LT_USERNAME="YOUR_USERNAME"
+set LT_ACCESS_KEY="YOUR_ACCESS_KEY"
+```
+
+### **Windows (PowerShell)**
+
+```powershell
+$env:LT_USERNAME="YOUR_USERNAME"
+$env:LT_ACCESS_KEY="YOUR_ACCESS_KEY"
 ```
 
 ---
 
-## 🌐 Tested Site
+## **Step 3 — Run the Test**
 
-All examples perform a double-click on this demo blog title:
+Once environment variables are set, simply execute:
 
-> LambdaTest Playground – Blog Article
-> 
+```bash
+python main.py
+```
 
----
+The script will:
 
-## 🧠 Notes
+1. Connect to the LambdaTest Selenium Grid
+2. Launch Chrome on Windows 11
+3. Navigate to the blog article
+4. Scroll to the heading
+5. Perform a double-click interaction
+6. Record test video, logs & execution results on LambdaTest
 
-- Each implementation opens Chrome, scrolls to the article title, and performs a realistic double-click using Selenium’s **ActionChains / Actions / Actions()** API.
-- Ensure the correct ChromeDriver is installed and matches your Chrome browser version.
-- Each folder maintains its own environment (`venv` for Python, `node_modules` for JavaScript) to keep dependencies isolated.
+You can view test insights in your dashboard:
 
----
-
-## 🧰 Optional Improvements
-
-- Add logging or screenshot capture after double-click.
-- Run tests in headless mode (`-headless`) for CI/CD pipelines.
-- Integrate with LambdaTest or other remote WebDriver platforms.
+**LambdaTest Dashboard → Automation → Test Logs**
 
 ---
 
-## 👨‍💻 Author
+# 🌐 **Test Page Used**
+
+All interactions occur on the LambdaTest Playground blog:
+
+```
+https://ecommerce-playground.lambdatest.io/index.php?route=extension/maza/blog/article&article_id=37
+```
+
+---
+
+# 🧠 **Notes**
+
+- Ensure Chrome is installed if running locally.
+- Chromedriver is automatically managed by Selenium 4 on most setups.
+- Use virtual environments to avoid dependency conflicts.
+- Switching between **local WebDriver** and **LambdaTest Remote WebDriver** is handled inside `main.py`.
+
+---
+
+# 📌 **Optional Improvements**
+
+- Add screenshot capturing after each double-click
+- Run in headless mode for CI/CD
+- Integrate with GitHub Actions for scheduled cross-browser cloud testing
+- Add assertion checks for validation
+
+---
+
+# 👨‍💻 **Author**
 
 **Alex Anie**
 
-💡 Technical Writer & Web Automation Enthusiast
+🧪 Automation Engineer & Technical Writer
 
-📚 Demonstrating Selenium best practices across languages
-
----
-
-##
+📚 Exploring Selenium best practices & cloud-based testing
