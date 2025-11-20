@@ -199,15 +199,6 @@ https://ecommerce-playground.lambdatest.io/index.php?route=extension/maza/blog/a
 
 ---
 
-# 📌 **Optional Improvements**
-
-- Add screenshot capturing after each double-click
-- Run in headless mode for CI/CD
-- Integrate with GitHub Actions for scheduled cross-browser cloud testing
-- Add assertion checks for validation
-
----
-
 # 👨‍💻 **Author**
 
 **Alex Anie**
