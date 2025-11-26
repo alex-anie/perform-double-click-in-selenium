@@ -1,3 +1,5 @@
+# file: double_click_fallback.py
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
@@ -5,15 +7,17 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 
+
 def js_double_click(driver, element):
-    """Perform a JavaScript-based double click."""
+    """Fallback double-click using JavaScript when ActionsChains fails."""
     script = """
+        var target = arguments[0];
         var event = new MouseEvent('dblclick', {
             bubbles: true,
             cancelable: true,
             view: window
         });
-        arguments[0].dispatchEvent(event);
+        target.dispatchEvent(event);
     """
     driver.execute_script(script, element)
 
@@ -22,32 +26,32 @@ def test_double_click_with_fallback():
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     driver.maximize_window()
 
-    # W3Schools double-click example page
-    driver.get("https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_ondblclick")
+    # TRUE DOUBLE-CLICK TEST WEBSITE
+    driver.get("https://testpages.herokuapp.com/styled/events/events-doubleclick.html")
     time.sleep(2)
 
-    # Switch into the iframe containing the clickable element
-    driver.switch_to.frame("iframeResult")
-
-    target = driver.find_element(By.ID, "demo")
+    target = driver.find_element(By.ID, "dblclick")
     actions = ActionChains(driver)
 
     try:
-        print("Attempting native Selenium double-click...")
+        print("Trying Selenium native double-click...")
         actions.double_click(target).perform()
         time.sleep(1)
 
-        # Verify if the double-click worked
-        if "Hello World" not in target.text:
-            raise Exception("Native double-click did NOT trigger JavaScript event.")
-        print("Native double-click succeeded:", target.text)
+        message = driver.find_element(By.ID, "buttonstatus").text
+        print("Result:", message)
+
+        # If the message does not confirm a double click, we consider it failed
+        if "Double Click" not in message:
+            raise Exception("Native double-click did not register correctly.")
 
     except Exception as e:
-        print("Native double-click failed. Using JavaScript fallback...")
+        print("Native double-click failed → switching to JavaScript fallback")
         js_double_click(driver, target)
         time.sleep(1)
 
-        print("Fallback double-click result:", target.text)
+        message = driver.find_element(By.ID, "buttonstatus").text
+        print("Fallback Result:", message)
 
     driver.quit()
 
